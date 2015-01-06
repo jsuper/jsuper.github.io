@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Java打包可执行jar的方法</title>
+<!-- 2015-01-06 �ܶ� 14:33 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="/static/style/main.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+
+<div class="site-nav">
+  <a href="/">HOME</a>
+  |
+  <a href="/about.html">ABOUT</a>
+</div>
+</div>
+<div id="content">
+<h1 class="title">Java打包可执行jar的方法</h1>
+<p>
+这个东西呢说难也很容易，但是在不知道的情况下还是无从下手。
+</p>
+
+<p>
+假定你已经配置好环境变量了，如果未配置，请google。首先：假定我们有一个工作目录是 <b>d:\java</b> , 在工作目录下存放了我们的
+java文件和我们的依赖jar包。假定是如下的两个文件： <b>HelloWorld.java</b> 和
+<b>common-lang.jar*，其中 *HelloWorld.java</b> 的内容如下：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #F0DFAF; font-weight: bold;">package</span> org.tony.<span style="color: #BFEBBF;">hello</span>;
+
+<span style="color: #F0DFAF; font-weight: bold;">import</span> <span style="color: #BFEBBF;">java</span>.<span style="color: #BFEBBF;">util</span>.<span style="color: #7CB8BB;">Date</span>; 
+<span style="color: #F0DFAF; font-weight: bold;">import</span> <span style="color: #BFEBBF;">org</span>.<span style="color: #BFEBBF;">apache</span>.<span style="color: #BFEBBF;">commons</span>.<span style="color: #BFEBBF;">lang</span>.<span style="color: #BFEBBF;">time</span>.<span style="color: #7CB8BB;">DateFormatUtils</span>;
+
+<span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #F0DFAF; font-weight: bold;">class</span> <span style="color: #7CB8BB;">HelloWorld</span>
+{
+   <span style="color: #F0DFAF; font-weight: bold;">public</span> <span style="color: #F0DFAF; font-weight: bold;">static</span> <span style="color: #7CB8BB;">void</span> <span style="color: #93E0E3;">main</span>(<span style="color: #7CB8BB;">String</span>[] <span style="color: #DFAF8F;">args</span>) 
+   {
+       <span style="color: #7CB8BB;">String</span> <span style="color: #DFAF8F;">curDate</span> = DateFormatUtils.format(<span style="color: #F0DFAF; font-weight: bold;">new</span> <span style="color: #7CB8BB;">Date</span>(),<span style="color: #CC9393;">"yyyy-MM-DD HH:mm:ss"</span>);
+       System.out.println(<span style="color: #CC9393;">"curDate:"</span> + curDate);
+   }
+}
+</pre>
+</div>
+
+<p>
+准备工作做好了，我们需要编写我们的manifest文件 <b>hello.mf</b>:
+</p>
+<pre class="example">
+Manifest-Version: 1.0 
+Created-By: tony example
+Class-Path: test.jar commons-lang-2.4.jar
+Main-Class: org.tony.hello.HelloWorld
+</pre>
+<p>
+然后编译项目：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">javac -cp ./common-lang.jar -d . HelloWorld.java
+</pre>
+</div>
+
+<p>
+在没有出现错误的情况下，我们就需要将编译好的class文件打包到我们的jar中，同时为了携带方便，我们也将common-lang.jar打包入test.jar中，当然通常是不这样做的，使用如下命令:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">jar -cvfm test.jar test.mf -C ./ .
+</pre>
+</div>
+
+<p>
+这样就在当前目录下生成了 test.jar.在命令行下执行如下命令，就可以运行我们的程序产生结果了：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">java -jar test.jar
+</pre>
+</div>
+</div>
+<div id="postamble" class="status">
+
+<div class="contact">
+  <p>
+    Github: <br />
+    新浪微博: <br />
+    Google Plus: <br />
+  </p>
+</div>
+<div class="contact">
+  <p>
+    <a href="https://github.com/jsuper">github.com/jsuper</a><br />
+    <a href="http://weibo.com/u/2041600541">@我去年买了个秤砣</a><br />
+    <a href="https://plus.google.com/u/0/">+ling.java</a><br />
+  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,165 @@
+body {
+    /*    font-family: Ubuntu, STFangSong, Helvetica, Arial, Vernada, Tahoma, STXihei, "Microsoft YaHei", "Songti SC", SimSun, Heiti, sans-serif;*/
+    /*    font-family: Helvetica, Arial, STXihei, "Microsoft YaHei",SimSun, Heiti, sans-serif;*/
+    font-family:Helvetica, Arial, Vernada, Tahoma, STFangsong, STXihei, "Songti SC", "Microsoft YaHei", Heiti, sans-serif;
+    font-size: 16px;
+    margin: 5% 20% 5% 20%;
+    box-shadow: 0 1px 10px #696969;
+    text-shadow: 0 1px 1px white;
+    padding: 2% 5% 5% 5%;
+    width: 50%;
+    line-height: 150%;
+    border: 1px solid LightGrey;
+}
+
+H1 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
+}
+
+H2 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: 90%;
+    line-height: 100%;
+    color: Green;
+    border-bottom: 1px dashed;
+}
+
+
+H3 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed;
+    width: 80%;
+    line-height: 150%;
+    color: Green;
+}
+
+
+H4 {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Helvetica, STKaiti, SimSun, serif;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px dashed;
+    width: 80%;
+    line-height: 150%;
+    color: Green;
+}
+
+.site-nav {
+    font-size:70%;
+    white-space:nowrap ;
+    text-align:right;
+}
+
+.post-info {
+    color: #999;
+    margin-top: 0px;
+    font-size: 10px;
+    font-family: "Ubuntu Mono", monospace;
+}
+
+li {
+    margin-left: 10px;
+}
+
+
+blockquote {
+    border-left: 4px lightgrey solid;
+    padding-left: 5px;
+    margin-left: 20px;
+}
+
+
+pre {
+    /*font-family: "Ubuntu Mono",monospace, Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy;*/
+    font-family: Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy, monospace;
+    font-size: 75%;
+    border: solid 1px lightgrey;
+    background-color: Ivory;
+    padding: 5px;
+    line-height: 130%;
+    margin-left: 10px;
+    width: 95%;
+}
+
+
+code {
+    font-family: Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy, monospace;
+    font-size: 90%;
+}
+
+
+a {
+    text-decoration: none;
+    cursor: crosshair;
+    border-bottom: 1px dashed Red;
+    padding: 1px;
+    color: black;
+}
+
+
+a:hover {
+	background-color: LightGrey;
+}
+
+img {
+    display: block;
+    box-shadow: 0 0 10px #555;
+    border-radius: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 0 10px #555;
+}
+
+hr {
+    color: LightGrey;
+}
+
+.footer, #postamble {
+    text-align: center;
+    font-size: 100%;
+    color: red;
+    border-top: 4px solid #eee;
+    margin-top: 2em;
+  overflow: hidden;
+}
+
+#postamble .contact {
+  float: left;
+  margin-right: 3em;
+}
+
+#postamble .contact a {
+  color: #8085C1;
+}
+
+#postamble .rss {
+  margin-top: 1.1em;
+  margin-right: -.2em;
+  float: right;
+}
+
+#postamble .rss img {
+  border: 0;
+}
+
+::selection {
+    background: #9EA1A5;
+    color: #fff;
+    text-shadow: none;
+}
+
+@media (max-width: 979px) {
+  body {
+  padding: 100px;
+  margin-left: 0px;
+  margin-right: 0px;
+  width: 60%;
+  }
+}

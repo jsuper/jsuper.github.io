@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>使用org-mode撰写jekyll博客</title>
+<!-- 2015-01-06 �ܶ� 12:59 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Tony" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" href="/static/style/main.css">
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+
+<div class="site-nav">
+  <a href="/">HOME</a>
+  |
+  <a href="/about.html">ABOUT</a>
+</div>
+</div>
+<div id="content">
+<h1 class="title">使用org-mode撰写jekyll博客</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Org-mode和Jekyll简单介绍</a>
+<ul>
+<li><a href="#sec-1-1">Org-mode 是什么？</a></li>
+<li><a href="#sec-1-2">Jekyll 是什么？</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">怎样使用org-mode来写Jekyll的博文？</a>
+<ul>
+<li><a href="#sec-2-1">Org-jekyll-mode介绍</a></li>
+<li><a href="#sec-2-2">怎样使用org-jekyll-mode</a>
+<ul>
+<li><a href="#sec-2-2-1">发布当前文件</a></li>
+<li><a href="#sec-2-2-2">org-jekyll-mode中定义的快捷键</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Org-mode和Jekyll简单介绍</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Org-mode 是什么？</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Org-mode是Emacs编辑器上一个基于文本的、快速且高效的文档编辑模式。支持内容分级显示的编辑模式，同时支持强大的TODO列表，日志管理，做笔记或者写工程计划等。关于org-mode,本文不做过多的说明。具体可以参见官方的详细文档<a href="http://orgmode.org/" target="_blank">org-mode</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Jekyll 是什么？</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Jekyll是一个采用Ruby编写的, 简单的、面向博客的静态网站生成工具。它能够将一系列文本文件（Markdown和Textile）转换成一个完整的，可以发布的静态页面。大名鼎鼎的代码托管商Github的Github pages就是采用的Jekyll做引擎。也就意味着，你可以免费使用Github的服务器来搭建属于你自己的项目WIKI，博客或者是网站等。关于Jekyll的详细使用，请参考官方文档<a href="http://jekyllrb.com/" target="_blank">Jekyll</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">怎样使用org-mode来写Jekyll的博文？</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Jekyll博客本身是不支持对org-mode的文件进行转换的，不过我们通过将
+org-mode文件发布成html之后，将其扔到jekyll博客的 <b>_posts</b> 目录下，其就可以进行处理了。org-mode支持将org-mode文件转换成多种格式的文档的，如：latex，pdf，html等等。
+</p>
+
+<p>
+如果只是简单的将org-mode文件转成html之后，放到Jekyll的<sub>posts目录下，那样或多</sub>
+或少会出现一些问题， 比如，我们发现我们自己定义的一些样式根本就没在这个文件里面。当然，解决的办法也很简单，我们只需要编写一个简单的project-alist，来指定其不导出某些内容即可，如下是一个简单的org-publish-project-alist:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(setq org-publish-project alist 
+'((<span style="color: #CC9393;">"test-base"</span>
+    <span style="color: #DCDCCC; font-weight: bold;">:body-only</span> t
+    <span style="color: #DCDCCC; font-weight: bold;">:base-directory</span> <span style="color: #CC9393;">"your org-mode file root directory"</span>
+    <span style="color: #DCDCCC; font-weight: bold;">:publishing-directory</span> <span style="color: #CC9393;">"your jekyll project _post directory path"</span>))
+</pre>
+</div>
+<p>
+我们在发布当前文件的时候，只需要选择项目test-base即可。这样导出的文件就只会包含
+html文件的body部分，并不会包含头信息等。关于详细的project-alist的编写规则，请参考
+org-mode<a href="http://orgmode.org/manual/Publishing.html#Publishing" target="_blank">官方文档</a>.
+</p>
+
+<p>
+当然，这样导出之后还没完，我们还没给我们的文件添加属于Jekyll的yaml-front-matter呢？这时打开导出之后的文件，在其首部添加上你需要的信息即可。虽说这样能够解决org-mode导出到jekyll博客的问题，但是过多的手工操作需要我们去做。作为一名码农，这是绝对无法忍受的。所以就诞生了这么一个工具
+<b>org-jeky-mode</b>.该项目是开源项目，代码托管到Github上，详细请戳<a href="https://github.com/jsuper/org-jekyll-mode" target="_blank">这里</a>.
+</p>
+
+
+
+<p>
+本文就是完全采用org-mode编写的，来一张截图:  
+</p>
+
+
+<div class="figure">
+<p><img src="../static/img/emacs/org-mode-jekyll-scrrenshot.png" alt="org-mode-jekyll-scrrenshot.png" style="margin-left: auto;margin-right:auto;display:block;" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Org-jekyll-mode介绍</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+org-jekyll-mode是一个emacs的插件，能够帮助用户使用org-mode来编写jekyll
+的博客文章, 使用org-jekyll-mode既可以快速创建类似jekyll博客文章命名格式的
+org-mode文件，也能够创建一个文件名不带时间前缀的文件。同时，
+org-jekyll-mode能够将最终导出的文件格式化成标准的jekyll博客文章格式。如： 如果你创建的org-mode文件的文件名是不带时间戳前缀的，那么
+org-jekyll-mode在导出最终的html文件之后，会在输出文件的文件名之前加上时间戳，如果你在org-mode-file中设定了 <b>#+DATE:</b> 选项，那么最终导出文件的时间戳则会以这个值为准，否则就采用当前时间。同时，org-jekyll-mode也可以直接在org-mode文件中控制最终导出文件的yaml font matter。目前，包含了所有jekyll支持的yaml front matter keywords。 不过，如果需要在
+org-mode文件中使用的话，这些关键字前面都需要加上 <b>#+YAML/</b> 前缀。同时，
+keyword最好大写。
+</p>
+
+<p>
+org-jekyll-mode本身是一个单独的插件，其在运行时是需要依赖org相关的包的，当然，目前对
+org-mode版本的最低要求是8.0. 因为org-mode 8.0版本相对于以前的有很多API的更改，本人又刚好使用的是8.0+的版本，所以就没有对以前的版本做兼容处理。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">怎样使用org-jekyll-mode</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+org-jekyll-mode使用非常简单，只需要将其最新的代码克隆到本机，在你的emacs初始化文件里面添加如下代码即可:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(add-to-list 'load-path <span style="color: #CC9393;">"your-org-jekyll-mode-root"</span>)
+(<span style="color: #F0DFAF; font-weight: bold;">require</span> '<span style="color: #BFEBBF;">org-jekyll-mode</span>)
+(setq org-jekyll/jekyll-project-root <span style="color: #CC9393;">"your-jekyll-root"</span>)
+(setq org-jekyll/org-mode-project-root <span style="color: #CC9393;">"your-org-mode-project-root"</span>)
+</pre>
+</div>
+
+<p>
+在使用org-jekyll-mode之前，你必须要先定义一些变量的值:  
+</p>
+
+<p>
+<b>org-jekyll/jekyll-project-root</b>
+</p>
+
+<p>
+这个变量指定了你的jekyll项目的根目录。因为org-jekyll-mode会根据这个路径，将其文件发布到这个目录的相应子目录下。
+</p>
+
+<p>
+<b>org-jekyll/org-mode-project-root</b> 
+</p>
+
+<p>
+该变量指定了你的org-mode文件存放的目录。一般我喜欢将我的文件放在一个单独的网盘里面，这样方便管理和随时查看。
+</p>
+
+<p>
+<b>org-jekyll/org-mode-static-files-folder-name</b>  
+</p>
+
+<p>
+这个变量指定了你在org-mode项目目录下，用于存放静态文件，如：图片、css等文件的目录名。默认是你的org-mode项目的根目录。我个人比较喜欢将其放在一个叫assets的目录下。所以我的
+org-mode 项目目录结构:
+</p>
+<pre class="example">
+-Notes
+ --assets
+  ----img
+  ----css
+*.org
+</pre>
+
+<p>
+关于更多的介绍，请参见项目WIKI。
+</p>
+</div>
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">发布当前文件</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+在文件编辑完毕之后，我们只需要执行 <b>M-x org-jekyll/publish-project</b> 就可以发布当前文件了.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">org-jekyll-mode中定义的快捷键</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+<b>[C-c C-n]</b> 创建一个新的org-mode文件，但是其文件名并不会带上时间戳。如果需要将在某一个子目录下创建该文件，只需要在目录名和文件名之间使用斜杠分开即可，如：2013/hello-world 就会在org-mode-project-root下，如果没有
+2013目录，则创建，否则在2013目录下创建hello-world.org文件.
+</p>
+
+<p>
+<b>[C-c C-d]</b> 功能跟 <b>C-c C-d</b> 一样，不过这个快捷键创建的文件会带上时间戳，也就是标准的jekyll post文件名格式。
+</p>
+
+<p>
+<b>[C-c C-p]</b> 发布当前文件
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+
+<div class="contact">
+  <p>
+    Github: <br />
+    新浪微博: <br />
+    Google Plus: <br />
+  </p>
+</div>
+<div class="contact">
+  <p>
+    <a href="https://github.com/jsuper">github.com/jsuper</a><br />
+    <a href="http://weibo.com/u/2041600541">@我去年买了个秤砣</a><br />
+    <a href="https://plus.google.com/u/0/">+ling.java</a><br />
+  </p>
+</div>
+</div>
+</body>
+</html>
