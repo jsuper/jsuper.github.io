@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>Tony</title>
+<title>通过IP远程连接MySQL数据库</title>
 <!-- 2015-01-15 ���� 11:20 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
@@ -145,17 +145,94 @@ for the JavaScript code in this tag.
 </div>
 </div>
 <div id="content">
-<h1 class="title">Tony</h1>
+<h1 class="title">通过IP远程连接MySQL数据库</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">软件环境</h2>
+<div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>2015-01-06 » <a href="linux/virtualbox_access_between_host_and_guest.html">VirtualBox主机与虚拟机之间互访</a>
+<li>OS: Debian/jessie
 </li>
-<li>2015-01-15 » <a href="linux/connect-mysql-by-ip.html">通过IP远程连接MySQL数据库</a>
-</li>
-<li>2015-01-06 » <a href="java/package-executable-jar.html">Java打包可执行jar的方法</a>
-</li>
-<li>2013-09-09 » <a href="emacs/using-org-mode-to-write-jekyll-post.html">使用org-mode撰写jekyll博客</a>
+<li>MySQL: 5.5
 </li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">MySQL配置</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">修改MySQL配置文件</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Windows下为 <b>my.ini</b>, Linux下为 <b>my.cnf</b> 。  
+</p>
+
+<p>
+编辑my.cnf文件，将[mysqld]项下的bind-address修改为本机IP地址。我虚拟机的IP地址是192.168.56.101, 配置文件修改如下：  
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-ini">[mysqld]
+     bind-address = 192.168.56.101
+</pre>
+</div>
+
+<p>
+修改配置文件之后，重启mysql服务
+service mysql restart
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">授权访问</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+修改配置完后，还需要对MySQL进行授权。登录MySQL，执行如下语句：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sql"><span style="color: #F0DFAF; font-weight: bold;">GRANT</span> <span style="color: #F0DFAF; font-weight: bold;">ALL</span> <span style="color: #F0DFAF; font-weight: bold;">ON</span> *.* <span style="color: #F0DFAF; font-weight: bold;">to</span> root@<span style="color: #CC9393;">'%'</span> IDENTIFIED <span style="color: #F0DFAF; font-weight: bold;">BY</span> <span style="color: #CC9393;">'PASSWORD'</span>;
+FLUSH <span style="color: #F0DFAF; font-weight: bold;">PRIVILEGES</span> ;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">防火墙配置</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+在MySQL配置完成之后，我们需要配置我的防火墙，让其允许外部连接3306端口。
+</p>
+
+<p>
+最简单的防火墙配置如下：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">iptables -A INPUT -i eth0 -p tcp --destination-port 3306 -j ACCEPT
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">测试访问</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+通过如下命令来测试配置是否生效：  
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">mysql -u root -h 192.168.56.101 -p
+</pre>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 
