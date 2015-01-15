@@ -89,6 +89,11 @@ pre {
     box-shadow:3px 3px 3px #3F3F3F;
 }
 
+pre.src:before{
+    color:black;
+    background-color:Ivory;
+}
+
 
 code {
     font-family: Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy, monospace;
