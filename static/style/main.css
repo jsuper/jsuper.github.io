@@ -78,12 +78,15 @@ pre {
     /*font-family: "Ubuntu Mono",monospace, Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy;*/
     font-family: Inconsolata, Consolas, "DEJA VU SANS MONO", "DROID SANS MONO", Proggy, monospace;
     font-size: 75%;
-    border: solid 1px lightgrey;
-    background-color: Ivory;
+    border: solid 1px #3F3F3F;
+    color:white ;
+    background-color: #3F3F3F;
+    text-shadow: none;
     padding: 5px;
     line-height: 130%;
     margin-left: 10px;
     width: 95%;
+    box-shadow:3px 3px 3px #3F3F3F;
 }
 
 
