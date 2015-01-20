@@ -121,6 +121,16 @@ hr {
     color: LightGrey;
 }
 
+pre.src {
+    background-color: #3F3F3F;
+    color: whitesmoke;
+    text-shadow: none;
+}
+
+pre.src:hover:before {
+    color: black;
+}
+
 .footer, #postamble {
     text-align: center;
     font-size: 100%;
