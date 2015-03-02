@@ -49,6 +49,17 @@ function addDuoshuoPlugin(){
     })();
 }
 
+function addForkMeOnGithub(){
+    var a = document.createElement('a');
+    a.className = 'fork-me-github' ;
+    a.href = 'https://github.com/jsuper';
+    var img = document.createElement('img');
+    img.className = 'fork-me-img' ;
+    img.src = '/static/img/github-fork-me.png' ;
+    img.alt = 'Fork me on Github';
+    a.appendChild(img) ;
+    document.body.appendChild(a);
+}
 
 
 $(document).ready(function(){
@@ -66,4 +77,7 @@ $(document).ready(function(){
 
         addDuoshuoPlugin();
     }
+    //append fork me icon on index page
+    if(isIndex) addForkMeOnGithub();
 });
+

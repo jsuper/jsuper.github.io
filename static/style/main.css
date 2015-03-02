@@ -10,6 +10,7 @@ body {
     width: 50%;
     line-height: 150%;
     border: 1px solid LightGrey;
+    position: relative;
 }
 
 H1 {
@@ -164,6 +165,23 @@ pre.src:hover:before {
     color: #fff;
     text-shadow: none;
 }
+.fork-me-github {
+    position: absolute;
+    top:-1px;
+    left: -2px;
+    border:0;
+    cursor: pointer;
+}
+.fork-me-github:hover{
+    background:transparent;
+}
+.fork-me-img{
+    margin:0;
+    padding: 0;
+    border:0;
+    box-shadow: none;
+}
+
 
 @media (max-width: 979px) {
   body {
