@@ -5,17 +5,17 @@
 <title>请拨打电话</title>
 </head>
 <body>
-<div>
-<a id="mobile" style=“hidden”></a>
-</div>
-<script>
-function getURl(name) {
-    var reg=new RegExp('\\?'+name+'=(.[^&#]*)');
-    var val=window.location.href.match(reg);
-    return val;
-}
-    document.getElementById('mobile').setAttribute('href','tel:10086');
-document.getElementById('mobile').click();
-</script>
+    <div>
+        <a id="mobile" style="hidden"></a>
+    </div>
+    <script>
+        function getURl(name) {
+            var reg=new RegExp('\\?'+name+'=(.[^&#]*)');
+            var val=window.location.href.match(reg);
+            return val;
+        }
+        document.getElementById('mobile').setAttribute('href','tel:10086');
+        document.getElementById('mobile').click();
+    </script>
 </body>
 </html>
