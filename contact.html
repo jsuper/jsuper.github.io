@@ -14,7 +14,7 @@
             var val=window.location.href.match(reg);
             return val;
         }
-        document.getElementById('mobile').setAttribute('href','tel:10086');
+        document.getElementById('mobile').setAttribute('href','tel:'++getURl('tel'));
         document.getElementById('mobile').click();
     </script>
 </body>
